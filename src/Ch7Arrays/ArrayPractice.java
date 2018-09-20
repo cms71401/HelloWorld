@@ -15,5 +15,12 @@ public class ArrayPractice {
         }
         System.out.println(Arrays.toString(numbers1));
 
+
+        //OR YOU CAN DO BOTH AT ONCE
+
+        int y=5;
+        int[] numbers2 = {1, 2, 3, 4, 5};
+        System.out.println(Arrays.toString(numbers2));
+
     }
 }
