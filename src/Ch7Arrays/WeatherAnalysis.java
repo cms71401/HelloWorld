@@ -3,21 +3,38 @@
 //
 package Ch7Arrays;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class WeatherAnalysis {
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
-        System.out.println("How many days worth of temperature?");
-        int days = console.nextInt();
-        int[] temps = new int[days];
-        int sum=0;
-        for(int i = 0; i < days; i++){
-            System.out.println("Day "+ (i + 1) + "'s high temp: ");
-            temps[i]= console.nextInt();
-            sum= sum+ temps[i];
-        }
-        int average= sum/days;
+         userInput(console);
+
+
+    }
+
+       public static void userInput (Scanner console) {
+           System.out.print("How many days worth of temperature?");
+           int days = console.nextInt();
+           int[] temps = new int[days];
+           dayTemperatures(days,temps,console);
+
+
+       }
+       public static void dayTemperatures(int days, int[] temps, Scanner console) {
+           int sum = 0;
+           for (int i = 0; i < days; i++) {
+               System.out.print("Day " + (i + 1) + "'s high temp: ");
+               temps[i] = console.nextInt();
+               sum = sum + temps[i];
+           }
+           averageAbove(days, sum, temps, console);
+       }
+
+        public static void averageAbove(int days, int sum, int[] temps, Scanner console){
+        double average= sum/days;
+        average = (Math.round(average * 10.0)) / 10.0;
         System.out.println("Average Temperature: "+ average);
         int numAbove=0;
         for(int i=0; i< temps.length; i++){
@@ -26,8 +43,13 @@ public class WeatherAnalysis {
             }
         }
         System.out.println("There are " + numAbove + " days above average.");
+        hotCold(temps);
 
-
+    }
+    public static void hotCold(int []temps){
+        Arrays.sort(temps);
+        System.out.println("Two coldest days: " + temps[0] + ", " + temps[1]);
+        System.out.println("Two hottest days: " + temps[temps.length - 2] + ", " + temps[temps.length - 1]);
     }
 }
 //Solution:
